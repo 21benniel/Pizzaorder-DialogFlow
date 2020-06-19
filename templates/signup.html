@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Base</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <ul class="nav navbar-nav">
+{# Django Home Link / Admin Link / Register Link#}
+          <li><a class="navbar-brand" href="{% url 'order' %}">JOHN PIZZA</a></li>
+          <!-- <li><a class="navbar-link" href="{% url 'admin:index' %}">Admin</a></li> -->
+          <!-- <li><a class="navbar-link" href="{% url 'signup' %}">Register</a></li>      -->
+          {# Some logic on what to display for last item#}
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <li><a class="navbar-link" href="{% url 'login' %}">Login</a></li>
+          {% endif %}
+</ul>
+      </div>
+    </nav>
+    <div class="container">
+        <div class="container">
+            <div class="jumbotron">
+              {% if registered %}
+                <h1>Thank you for registering!</h1>
+              {% else %}
+                <h1>Register Here</h1>
+                <h3>Just fill out the form.</h3>
+        <form enctype="multipart/form-data" method="POST">
+                  {% csrf_token %}
+                  {{ user_form.as_p }}
+                  {{ profile_form.as_p }}
+                  <input type="submit" name="" value="Register">
+                </form>
+                
+              {% endif %}
+            </div>
+          </div>
+    </div>
+  </body>
+</html>

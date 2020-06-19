@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+    
+    
+    
+{% block content %}
+
+
+
+
+    <div class="container">
+        <div class="jumbotron">
+          <h1>Welcome to the JOHN PIZZA ORDER !</h1>
+          {% if user.is_authenticated %}
+              <h2>Hello {{ user.username }}</h2>
+          {% else %}
+              <h2 style="color: rgb(58, 126, 63);">signup or Login if you'd like to</h2>
+          {% endif %}
+        </div>
+        
+      </div>
+    <br><br><br>
+    <!-- enctype="multipart/form-data" -->
+    <form class="center-align" action="bill" method="POST"> 
+
+        {% csrf_token %}
+        <!-- <label for="topping1" >TOPPINGS!</label>
+        <input type="text" id="topping1" name="topping1">
+        <br>
+
+        <label for="topping2" >TOPPINGS2</label>
+        <input type="text" id="topping2" name="topping2">
+        <br>
+        <select name="size" id="size">
+
+            <option value="small">small</option>
+            <option value="medium">Medium</option>
+            <option value="Large">Large</option>
+        </select>
+        <br> -->
+        <div class="center-align">
+        {{order}}
+
+        <input type="submit" value="order pizza">
+        </div>
+    </form>
+
+    <br>
+{% endblock %}
+    
